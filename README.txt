@@ -1,0 +1,1 @@
+TIGR VPN 0.4 — monochrome black/silver PWA prototype. Upload all files to an HTTPS static host. Open the HTTPS URL in Safari and use Share > Add to Home Screen. This is not a functioning VPN and does not tunnel or protect network traffic. Do not publish passwords or private keys.

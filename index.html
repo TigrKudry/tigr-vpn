@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050505"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="TIGR VPN">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml">
+<title>TIGR VPN — Твоя сеть</title>
+<style>
+:root{color-scheme:dark;--bg:#050505;--panel:#151515;--silver:#e5e7eb;--muted:#a1a1aa;--line:#3f3f46}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 10%,#242424 0,#090909 52%,#000 100%);color:#f5f5f5;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:env(safe-area-inset-top) 17px calc(16px + env(safe-area-inset-bottom))}
+main{max-width:470px;margin:auto}header{display:flex;align-items:center;justify-content:space-between;padding:16px 2px}.brand{font-weight:900;font-size:22px;letter-spacing:1px}.brand span{color:#a1a1aa}.pill{font-size:11px;color:#e5e7eb;border:1px solid #52525b;background:#18181b;padding:7px 10px;border-radius:30px}
+.hero{text-align:center;padding:12px 0 22px}.logo{width:min(74vw,300px);height:auto;display:block;margin:0 auto 8px;filter:drop-shadow(0 0 14px #ffffff22)}.sub{font-size:14px;color:var(--muted);line-height:1.5}.power{margin:24px auto 16px;width:145px;height:145px;border-radius:50%;border:4px solid #d4d4d8;background:linear-gradient(145deg,#292929,#090909);box-shadow:0 0 22px #ffffff22,inset 0 0 20px #ffffff15;color:white;font-size:58px;display:grid;place-items:center}.status{font-size:23px;font-weight:800}.hint{font-size:13px;color:var(--muted);margin-top:7px}
+.card{background:linear-gradient(145deg,#202020,#111);border:1px solid var(--line);border-radius:17px;padding:15px;margin:12px 0}.label{font-size:12px;color:var(--muted);margin-bottom:7px}.select{width:100%;padding:12px;border:1px solid #52525b;border-radius:11px;background:#090909;color:white;font-size:16px}.line{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}.line:last-child{border:0}.notice{font-size:12px;line-height:1.5;color:#d4d4d8;background:#18181b;border:1px solid #3f3f46;border-radius:12px;padding:12px;margin-top:14px}
+nav{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:22px 0 10px}nav button,.server{background:#171717;border:1px solid #3f3f46;color:#a1a1aa;border-radius:12px;padding:12px 4px;font-size:12px}nav button.active,.server.selected{color:#fff;border-color:#d4d4d8;background:#292929}.view[hidden]{display:none}h2{font-size:22px;margin:4px 0 15px}.server{width:100%;display:flex;justify-content:space-between;text-align:left;padding:14px;margin:7px 0;font-size:15px;color:white}.small{text-align:center;color:#737373;font-size:11px;padding:12px 0}
+</style></head><body><main>
+<header><div class="brand">TIGR <span>VPN</span></div><div class="pill">ТВОЯ СЕТЬ</div></header>
+<section id="home" class="view"><div class="hero">
+<img class="logo" src="logo.png" alt="Логотип TIGR — Твоя сеть — VPN">
+<div class="sub">ТВОЯ СЕТЬ. ТВОИ ПРАВИЛА.</div>
+<div class="power" aria-hidden="true">⏻</div><div class="status">Интерфейс готов</div><div class="hint">Настоящий VPN-сервер ещё не подключён</div></div>
+<div class="card"><div class="label">ВЫБОР СЕРВЕРА · ДЕМО</div><select id="serverSelect" class="select"><option>Автоматический</option><option>США 🇺🇸</option><option>Германия 🇩🇪</option><option>Франция 🇫🇷</option><option>Нидерланды 🇳🇱</option><option>Япония 🇯🇵</option><option>Сингапур 🇸🇬</option></select><div class="line"><span class="sub">Планируемый протокол</span><b>WireGuard</b></div></div>
+<div class="notice">Это веб-прототип. Он не создаёт VPN-туннель, не меняет IP-адрес и не защищает интернет-трафик.</div></section>
+<section id="servers" class="view" hidden><h2>Серверы</h2><p class="sub">Выбор стран пока демонстрационный. Реальные серверы ещё не подключены.</p><div id="serverList"></div></section>
+<section id="settings" class="view" hidden><h2>Настройки</h2><div class="card"><div class="line"><span>Автовыбор сервера</span><input type="checkbox" checked></div><div class="line"><span>Уведомления</span><input type="checkbox" checked></div><div class="line"><span>Kill Switch</span><span class="sub">Недоступен в веб-версии</span></div><div class="line"><span>Версия</span><b>0.4</b></div></div><div class="notice">Не публикуй пароли, приватные ключи или конфигурации VPN в открытом репозитории.</div></section>
+<nav><button class="active" data-view="home">⌂<br>Главная</button><button data-view="servers">◎<br>Серверы</button><button data-view="settings">⚙<br>Настройки</button></nav><div class="small">TIGR VPN · 0.4 · Веб-прототип</div></main>
+<script>
+const names=["Автоматический","США 🇺🇸","Германия 🇩🇪","Франция 🇫🇷","Нидерланды 🇳🇱","Япония 🇯🇵","Сингапур 🇸🇬"],sel=document.getElementById("serverSelect"),list=document.getElementById("serverList");
+function render(){list.innerHTML="";names.forEach(n=>{let b=document.createElement("button");b.className="server"+(sel.value===n?" selected":"");b.textContent=n+(sel.value===n?" ✓":" ›");b.onclick=()=>{sel.value=n;show("home")};list.appendChild(b)})}
+function show(id){document.querySelectorAll(".view").forEach(v=>v.hidden=v.id!==id);document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.view===id));if(id==="servers")render()}
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>show(b.dataset.view));sel.onchange=render;
+if("serviceWorker"in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("./sw.js").catch(()=>{});
+</script></body></html>
